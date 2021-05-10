@@ -6,8 +6,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ua.knu.csc.emagazine.domain.service.CategoryAlreadyExistsException;
-import ua.knu.csc.emagazine.domain.service.CategoryNotFoundException;
+import ua.knu.csc.emagazine.api.exception.EntityNotFoundException;
+import ua.knu.csc.emagazine.domain.category.CategoryAlreadyExistsException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,10 +33,10 @@ public class CommonControllerAdvice {
         return new ErrorDTO(HttpStatus.BAD_REQUEST.value(), "Category already exists");
     }
 
-    @ExceptionHandler(CategoryNotFoundException.class)
+    @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorDTO handleCategoryNotFoundException(CategoryNotFoundException e) {
-        return new ErrorDTO(404, "Category with given id does not exist");
+    public ErrorDTO handleEntityNotFoundException(EntityNotFoundException e) {
+        return new ErrorDTO(404, "Entity with given id does not exist");
     }
 
 }

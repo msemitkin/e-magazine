@@ -1,10 +1,9 @@
 package ua.knu.csc.emagazine.api.mapper;
 
 import org.springframework.stereotype.Component;
-import ua.knu.csc.emagazine.api.dto.CategoryDTO;
-import ua.knu.csc.emagazine.api.dto.CreateCategoryDTO;
-import ua.knu.csc.emagazine.api.dto.UpdateCategoryDTO;
-import ua.knu.csc.emagazine.domain.Category;
+import ua.knu.csc.emagazine.api.dto.category.CategoryDTO;
+import ua.knu.csc.emagazine.api.dto.category.CreateCategoryDTO;
+import ua.knu.csc.emagazine.domain.category.Category;
 
 @Component
 public class CategoryMapper {
@@ -17,7 +16,7 @@ public class CategoryMapper {
         return new CategoryDTO(category.getId(), category.getValue());
     }
 
-    public Category toEntity(UpdateCategoryDTO categoryDTO) {
+    public Category toEntity(CategoryDTO categoryDTO) {
         return new Category(categoryDTO.getId(), categoryDTO.getValue());
     }
 }

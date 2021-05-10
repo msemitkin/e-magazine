@@ -1,5 +1,7 @@
 package ua.knu.csc.emagazine.domain;
 
+import ua.knu.csc.emagazine.domain.category.Category;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

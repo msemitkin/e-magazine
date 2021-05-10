@@ -1,4 +1,4 @@
-package ua.knu.csc.emagazine.api.dto;
+package ua.knu.csc.emagazine.api.dto.category;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package ua.knu.csc.emagazine.domain.service;
+package ua.knu.csc.emagazine.domain.category;
 
 public class CategoryAlreadyExistsException extends RuntimeException {
 

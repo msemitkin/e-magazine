@@ -1,4 +1,4 @@
-package ua.knu.csc.emagazine.api.dto;
+package ua.knu.csc.emagazine.api.dto.category;
 
 import java.util.Objects;
 

@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.knu.csc.emagazine.api.dto.CategoryDTO;
-import ua.knu.csc.emagazine.api.dto.CreateCategoryDTO;
-import ua.knu.csc.emagazine.api.dto.UpdateCategoryDTO;
+import ua.knu.csc.emagazine.api.dto.category.CategoryDTO;
+import ua.knu.csc.emagazine.api.dto.category.CreateCategoryDTO;
 import ua.knu.csc.emagazine.api.mapper.CategoryMapper;
-import ua.knu.csc.emagazine.domain.Category;
-import ua.knu.csc.emagazine.domain.service.CategoryService;
+import ua.knu.csc.emagazine.domain.category.Category;
+import ua.knu.csc.emagazine.domain.category.CategoryService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -50,8 +49,8 @@ public class CategoryController {
         @PathVariable("id") Integer categoryId,
         @Valid CreateCategoryDTO createCategoryDTO
     ) {
-        UpdateCategoryDTO categoryDTO =
-            new UpdateCategoryDTO(categoryId, createCategoryDTO.getValue());
+        CategoryDTO categoryDTO =
+            new CategoryDTO(categoryId, createCategoryDTO.getValue());
         Category category = categoryMapper.toEntity(categoryDTO);
         Category updated = categoryService.update(category);
         return categoryMapper.toDTO(updated);

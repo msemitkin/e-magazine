@@ -1,7 +1,7 @@
-package ua.knu.csc.emagazine.domain.service;
+package ua.knu.csc.emagazine.domain.category;
 
 import org.springframework.stereotype.Service;
-import ua.knu.csc.emagazine.domain.Category;
+import ua.knu.csc.emagazine.api.exception.EntityNotFoundException;
 import ua.knu.csc.emagazine.repository.CategoryRepository;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class CategoryService {
         if (categoryRepository.existsById(category.getId())) {
             return categoryRepository.save(category);
         } else {
-            throw new CategoryNotFoundException("Category with given id not found");
+            throw new EntityNotFoundException("Category with given id not found");
         }
     }
 }
