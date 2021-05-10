@@ -25,6 +25,10 @@ public class Category {
         this.value = value;
     }
 
+    public static Category withValue(String value) {
+        return new Category(null, value);
+    }
+
     public Integer getId() {
         return id;
     }

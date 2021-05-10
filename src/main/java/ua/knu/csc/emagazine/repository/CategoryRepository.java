@@ -6,4 +6,6 @@ import ua.knu.csc.emagazine.domain.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
+
+    boolean existsCategoryByValue(String value);
 }
