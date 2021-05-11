@@ -1,7 +1,8 @@
 package ua.knu.csc.emagazine.domain.publisher;
 
-import ua.knu.csc.emagazine.domain.Magazine;
+import ua.knu.csc.emagazine.domain.magazine.Magazine;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Publisher {
     private Integer id;
     @Column(nullable = false)
     private String name;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "publisher_id")
     private List<Magazine> magazines;
 

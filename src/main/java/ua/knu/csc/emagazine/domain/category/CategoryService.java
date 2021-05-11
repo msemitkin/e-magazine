@@ -5,6 +5,7 @@ import ua.knu.csc.emagazine.api.exception.EntityNotFoundException;
 import ua.knu.csc.emagazine.repository.CategoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -24,6 +25,15 @@ public class CategoryService {
 
     public List<Category> findAll() {
         return categoryRepository.findAll();
+    }
+
+    public Category findById(Integer id) {
+        Optional<Category> found = categoryRepository.findById(id);
+        if (found.isPresent()) {
+            return found.get();
+        } else {
+            throw new EntityNotFoundException("Category with given id doe not exist");
+        }
     }
 
     public Category update(Category category) {
