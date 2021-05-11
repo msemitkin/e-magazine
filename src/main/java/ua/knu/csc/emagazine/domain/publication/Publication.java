@@ -1,4 +1,6 @@
-package ua.knu.csc.emagazine.domain;
+package ua.knu.csc.emagazine.domain.publication;
+
+import ua.knu.csc.emagazine.domain.keyword.KeyWord;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

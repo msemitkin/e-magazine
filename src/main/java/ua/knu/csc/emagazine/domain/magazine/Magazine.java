@@ -1,8 +1,9 @@
 package ua.knu.csc.emagazine.domain.magazine;
 
-import ua.knu.csc.emagazine.domain.Publication;
+import ua.knu.csc.emagazine.domain.publication.Publication;
 import ua.knu.csc.emagazine.domain.category.Category;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +23,12 @@ public class Magazine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    //    @Column(nullable = false)
-    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne
     private Category category;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "magazine_id")
     private List<Publication> publications;
 

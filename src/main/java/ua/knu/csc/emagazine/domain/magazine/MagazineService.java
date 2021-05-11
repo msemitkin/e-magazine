@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Service
 public class MagazineService {
+    public static final String NOT_EXIST_MESSAGE = "Magazine with given id does not exist";
 
     private final MagazineRepository magazineRepository;
 
@@ -20,7 +21,7 @@ public class MagazineService {
         if (found.isPresent()) {
             return found.get();
         } else {
-            throw new EntityNotFoundException("Magazine with given id was not found");
+            throw new EntityNotFoundException(NOT_EXIST_MESSAGE);
         }
     }
 
@@ -28,7 +29,7 @@ public class MagazineService {
         if (magazineRepository.existsById(magazine.getId())) {
             return magazineRepository.save(magazine);
         } else {
-            throw new EntityNotFoundException("Magazine with given id does not exist");
+            throw new EntityNotFoundException(NOT_EXIST_MESSAGE);
         }
     }
 
@@ -36,7 +37,7 @@ public class MagazineService {
         if (magazineRepository.existsById(id)) {
             magazineRepository.deleteById(id);
         } else {
-            throw new EntityNotFoundException("Magazine with given id does not exist");
+            throw new EntityNotFoundException(NOT_EXIST_MESSAGE);
         }
     }
 }
