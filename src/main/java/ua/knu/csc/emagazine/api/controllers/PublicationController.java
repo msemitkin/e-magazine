@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ua.knu.csc.emagazine.api.dto.publication.CreatePublicationDTO;
@@ -20,6 +21,7 @@ import ua.knu.csc.emagazine.domain.publication.PublicationService;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -65,6 +67,13 @@ public class PublicationController {
         return publicationMapper.toDTO(found);
     }
 
+    @GetMapping("/api/publications")
+    public List<PublicationDTO> getAllByKeyWords(@RequestParam Set<Integer> keyWordsIds) {
+        return publicationService.findByKeyWords(keyWordsIds).stream()
+            .map(publicationMapper::toDTO)
+            .collect(Collectors.toList());
+    }
+
     @PutMapping("/api/publications/{id}")
     public PublicationDTO update(
         @PathVariable("id") Integer id,
@@ -72,6 +81,7 @@ public class PublicationController {
     ) {
         Publication publication = publicationMapper.toEntity(publicationDTO);
         publication.setId(id);
+        publication.setPublicationDateTime(LocalDateTime.now());
         Publication updated = publicationService.update(publication);
         return publicationMapper.toDTO(updated);
     }

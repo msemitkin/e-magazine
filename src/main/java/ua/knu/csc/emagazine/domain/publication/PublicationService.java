@@ -2,9 +2,13 @@ package ua.knu.csc.emagazine.domain.publication;
 
 import org.springframework.stereotype.Service;
 import ua.knu.csc.emagazine.api.exception.EntityNotFoundException;
+import ua.knu.csc.emagazine.domain.keyword.KeyWord;
 import ua.knu.csc.emagazine.repository.PublicationRepository;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PublicationService {
@@ -23,6 +27,15 @@ public class PublicationService {
         } else {
             throw new EntityNotFoundException(NOT_EXISTS_MESSAGE);
         }
+    }
+
+    public List<Publication> findByKeyWords(Collection<Integer> keyWordsIds) {
+        return publicationRepository.findAll().stream()
+            .filter(publication -> publication.getKeyWords().stream()
+                .map(KeyWord::getId)
+                .collect(Collectors.toList())
+                .containsAll(keyWordsIds))
+            .collect(Collectors.toList());
     }
 
     public Publication update(Publication publication) {

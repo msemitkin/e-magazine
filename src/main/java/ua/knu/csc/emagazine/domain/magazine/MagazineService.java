@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ua.knu.csc.emagazine.api.exception.EntityNotFoundException;
 import ua.knu.csc.emagazine.repository.MagazineRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,14 @@ public class MagazineService {
         } else {
             throw new EntityNotFoundException(NOT_EXIST_MESSAGE);
         }
+    }
+
+    public List<Magazine> findByNameSubString(String subString) {
+        return magazineRepository.findByNameContaining(subString);
+    }
+
+    public List<Magazine> findByCategory(int categoryId) {
+        return magazineRepository.findByCategoryId(categoryId);
     }
 
     public Magazine update(Magazine magazine) {

@@ -82,6 +82,20 @@ public class MagazineController {
         return magazineMapper.toDTO(updated);
     }
 
+    @GetMapping("/api/magazines/names/{subString}")
+    public List<MagazineDTO> findByNameSubString(@PathVariable("subString") String subString) {
+        return magazineService.findByNameSubString(subString).stream()
+            .map(magazineMapper::toDTO)
+            .collect(Collectors.toList());
+    }
+
+    @GetMapping("/api/categories/{category}/magazines")
+    public List<MagazineDTO> findByCategory(@PathVariable("category") int category) {
+        return magazineService.findByCategory(category).stream()
+            .map(magazineMapper::toDTO)
+            .collect(Collectors.toList());
+    }
+
     @DeleteMapping("/api/magazines/{id}")
     public void deleteById(@PathVariable("id") Integer magazineId) {
         magazineService.deleteById(magazineId);
