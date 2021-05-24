@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ua.knu.csc.emagazine.api.dto.magazine.CreateMagazineDTO;
@@ -46,7 +47,7 @@ public class MagazineController {
     @ResponseStatus(HttpStatus.CREATED)
     public void save(
         @PathVariable("id") Integer publisherId,
-        @Valid CreateMagazineDTO createMagazineDTO
+        @Valid @RequestBody CreateMagazineDTO createMagazineDTO
     ) {
         Magazine magazine = magazineMapper.toEntity(createMagazineDTO);
         Category category = categoryService.findById(magazine.getCategory().getId());
@@ -73,7 +74,7 @@ public class MagazineController {
     @PutMapping("/api/magazines/{id}")
     public MagazineDTO update(
         @PathVariable("id") Integer magazineId,
-        @Valid CreateMagazineDTO createMagazineDTO
+        @Valid @RequestBody CreateMagazineDTO createMagazineDTO
     ) {
         Magazine magazine = magazineMapper.toEntity(createMagazineDTO);
         magazine.setId(magazineId);

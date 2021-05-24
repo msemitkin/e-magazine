@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ua.knu.csc.emagazine.api.dto.category.CategoryDTO;
 import ua.knu.csc.emagazine.api.dto.category.CreateCategoryDTO;
@@ -31,7 +32,7 @@ public class CategoryController {
     }
 
     @PostMapping("/api/categories/")
-    public CategoryDTO addCategory(@Valid CreateCategoryDTO createCategoryDTO) {
+    public CategoryDTO addCategory(@Valid @RequestBody CreateCategoryDTO createCategoryDTO) {
         Category category = categoryMapper.toEntity(createCategoryDTO);
         Category saved = categoryService.save(category);
         return categoryMapper.toDTO(saved);
@@ -47,7 +48,7 @@ public class CategoryController {
     @PutMapping("/api/categories/{id}")
     public CategoryDTO update(
         @PathVariable("id") Integer categoryId,
-        @Valid CreateCategoryDTO createCategoryDTO
+        @Valid @RequestBody CreateCategoryDTO createCategoryDTO
     ) {
         CategoryDTO categoryDTO =
             new CategoryDTO(categoryId, createCategoryDTO.getValue());

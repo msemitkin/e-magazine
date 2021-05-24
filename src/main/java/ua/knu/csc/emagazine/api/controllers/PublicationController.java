@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ua.knu.csc.emagazine.api.dto.publication.CreatePublicationDTO;
@@ -41,7 +42,7 @@ public class PublicationController {
     @ResponseStatus(HttpStatus.CREATED)
     public void create(
         @PathVariable("magazineId") Integer magazineId,
-        @Valid CreatePublicationDTO publicationDTO
+        @Valid @RequestBody CreatePublicationDTO publicationDTO
     ) {
         Publication publication = publicationMapper.toEntity(publicationDTO);
         publication.setPublicationDateTime(LocalDateTime.now());
@@ -67,7 +68,7 @@ public class PublicationController {
     @PutMapping("/api/publications/{id}")
     public PublicationDTO update(
         @PathVariable("id") Integer id,
-        @Valid CreatePublicationDTO publicationDTO
+        @Valid @RequestBody CreatePublicationDTO publicationDTO
     ) {
         Publication publication = publicationMapper.toEntity(publicationDTO);
         publication.setId(id);

@@ -2,6 +2,7 @@ package ua.knu.csc.emagazine.api.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ua.knu.csc.emagazine.api.dto.keyword.CreateKeyWordDTO;
 import ua.knu.csc.emagazine.api.dto.keyword.KeyWordDTO;
@@ -35,7 +36,7 @@ public class KeyWordController {
     }
 
     @PostMapping("/api/keywords/")
-    public KeyWordDTO save(@Valid CreateKeyWordDTO keyWordDTO) {
+    public KeyWordDTO save(@Valid @RequestBody CreateKeyWordDTO keyWordDTO) {
         KeyWord keyWord = keyWordMapper.toEntity(keyWordDTO);
         KeyWord saved = keyWordService.save(keyWord);
         return keyWordMapper.toDTO(saved);
