@@ -1,5 +1,7 @@
 package ua.knu.csc.emagazine.api.dto.publisher;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -8,7 +10,7 @@ public class CreatePublisherDTO {
     @NotBlank(message = "Name must be not blank")
     private String name;
 
-    public CreatePublisherDTO(String name) {
+    public CreatePublisherDTO(@JsonProperty("name") String name) {
         this.name = name;
     }
 

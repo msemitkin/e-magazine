@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class PublisherService {
+    private static final String PUBLISHER_WITH_ID_NOT_FOUND_MESSAGE = "Publisher with given id not found";
 
     private final PublisherRepository publisherRepository;
 
@@ -29,14 +30,22 @@ public class PublisherService {
         if (found.isPresent()) {
             return found.get();
         }
-        throw new EntityNotFoundException("Publisher with given id not found");
+        throw new EntityNotFoundException(PUBLISHER_WITH_ID_NOT_FOUND_MESSAGE);
     }
 
     public Publisher update(Publisher publisher) {
         if (publisherRepository.existsById(publisher.getId())) {
             return publisherRepository.save(publisher);
         } else {
-            throw new EntityNotFoundException("Publisher with given id not found");
+            throw new EntityNotFoundException(PUBLISHER_WITH_ID_NOT_FOUND_MESSAGE);
+        }
+    }
+
+    public void delete(int id) {
+        if (publisherRepository.existsById(id)) {
+            publisherRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException(PUBLISHER_WITH_ID_NOT_FOUND_MESSAGE);
         }
     }
 }

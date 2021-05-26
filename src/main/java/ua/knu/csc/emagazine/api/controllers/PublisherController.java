@@ -1,5 +1,6 @@
 package ua.knu.csc.emagazine.api.controllers;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,13 +30,13 @@ public class PublisherController {
         this.publisherMapper = publisherMapper;
     }
 
-    @PostMapping("/api/publishers/")
+    @PostMapping("/api/publishers")
     public PublisherDTO createPublisher(@Valid @RequestBody CreatePublisherDTO createPublisherDTO) {
         Publisher saved = publisherService.save(publisherMapper.toEntity(createPublisherDTO));
         return publisherMapper.toDTO(saved);
     }
 
-    @GetMapping("/api/publishers/")
+    @GetMapping("/api/publishers")
     public List<PublisherDTO> getPublishers() {
         return publisherService.findAll().stream()
             .map(publisherMapper::toDTO)
@@ -56,6 +57,11 @@ public class PublisherController {
         PublisherDTO publisherDTO = new PublisherDTO(publisherId, updatePublisherDTO.getName());
         Publisher updated = publisherService.update(publisherMapper.toEntity(publisherDTO));
         return publisherMapper.toDTO(updated);
+    }
+
+    @DeleteMapping("/api/publishers/{id}")
+    public void delete(@PathVariable("id") int id) {
+        publisherService.delete(id);
     }
 
 }

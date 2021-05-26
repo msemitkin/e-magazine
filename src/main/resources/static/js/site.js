@@ -1,11 +1,33 @@
 $(document).ready(function () {
 
     $(document).on("click", ".add-publisher", function () {
-        alert("Here must be a form to add a new publisher");
+        renderAddPublisherForm("#content");
     });
+
+    $(document).on("submit", "#add-publisher-form", function () {
+        let publisherName = $("#publisher-name").val().trim();
+        addPublisher(publisherName, "#content");
+    })
 
     $(document).on("click", ".get-publishers", function () {
         renderPublishersList("#content");
+    });
+
+    $(document).on("click", ".get-edit-publisher-form", function () {
+        let publisherId = $(this).attr("id");
+        renderEditPublisherForm(publisherId, "#content");
+    });
+
+    $(document).on("submit", "#edit-publisher-form", function () {
+        let publisherId = $("#publisherId").val();
+        console.log(publisherId);
+        let publisherName = $("#publisher-name").val().trim();
+        editPublisher(publisherId, publisherName, "#content");
+    });
+
+    $(document).on("click", ".delete-publisher", function () {
+        let publisherId = $(this).attr("id");
+        deletePublisher(publisherId);
     });
 
     $(document).on("submit", "#add-magazine-form", function () {
@@ -26,7 +48,8 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".magazine", function () {
-        alert("Here must be shown magazine info");
+        let id = $(this).attr("id");
+        alert(`Here must be shown magazine info. Id: ${id}`);
     });
 
     $(document).on("click", ".add-magazine", function () {
