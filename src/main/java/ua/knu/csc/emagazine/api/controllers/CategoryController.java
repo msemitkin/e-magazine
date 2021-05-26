@@ -30,14 +30,14 @@ public class CategoryController {
         this.categoryMapper = categoryMapper;
     }
 
-    @PostMapping("/api/categories/")
+    @PostMapping("/api/categories")
     public CategoryDTO addCategory(@Valid @RequestBody CreateCategoryDTO createCategoryDTO) {
         Category category = categoryMapper.toEntity(createCategoryDTO);
         Category saved = categoryService.save(category);
         return categoryMapper.toDTO(saved);
     }
 
-    @GetMapping("/api/categories/")
+    @GetMapping("/api/categories")
     public List<CategoryDTO> getCategories() {
         return categoryService.findAll().stream()
             .map(categoryMapper::toDTO)

@@ -1,0 +1,13 @@
+#content {
+    width: 1000px;
+    margin: auto;
+}
+
+.publisher:hover, .magazine:hover {
+    box-shadow: 0 0 5px 2px lightgray;
+}
+
+.simple-form {
+    width: 600px;
+    margin: auto;
+}

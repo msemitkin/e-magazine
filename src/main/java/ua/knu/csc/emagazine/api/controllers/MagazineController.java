@@ -43,7 +43,7 @@ public class MagazineController {
         this.magazineMapper = magazineMapper;
     }
 
-    @PostMapping("/api/publishers/{id}/magazines/")
+    @PostMapping("/api/publishers/{id}/magazines")
     @ResponseStatus(HttpStatus.CREATED)
     public void save(
         @PathVariable("id") Integer publisherId,
@@ -57,7 +57,7 @@ public class MagazineController {
         publisherService.update(publisher);
     }
 
-    @GetMapping("/api/publishers/{id}/magazines/")
+    @GetMapping("/api/publishers/{id}/magazines")
     public List<MagazineDTO> getByPublisherId(@PathVariable("id") Integer publisherId) {
         return publisherService.findById(publisherId).getMagazines().stream()
             .map(magazineMapper::toDTO)

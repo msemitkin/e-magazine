@@ -1,0 +1,21 @@
+<form method="post" id="add-magazine-form" class="simple-form" action="javascript:void(0)">
+    <input type="hidden" id="publisher-id">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="magazine-name">Name:</label>
+        <input class="form-control"
+               type="text"
+               name="name"
+               id="magazine-name"
+               placeholder="Enter name"
+               required
+               autofocus>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="category-id">Category:</label>
+        <select class="form-control category-select" id="category-id" name="category">
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-info">
+    </div>
+</form>
