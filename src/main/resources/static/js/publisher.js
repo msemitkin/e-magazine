@@ -8,6 +8,7 @@ function renderAddPublisherForm(selector) {
 function renderPublishersList(selector) {
     $.get("/api/publishers/", publishers => {
         let table = `
+            <h1 class="display-4 text-center">Publishers</h1>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -81,7 +82,8 @@ function editPublisher(publisherId, publisherName, renderPublishersListSelector)
         url: uri,
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: () => renderPublishersList(renderPublishersListSelector)
+        success: () => renderPublishersList(renderPublishersListSelector),
+        error: (xhr) => handleFormErrors(xhr)
     });
 }
 
@@ -105,7 +107,7 @@ function renderPublisher(publisherId, selector) {
 
 function renderPublisherNavBar(publisher, selector) {
     let html = `
-            <h1 class="display-3 text-center">${publisher.name}</h1>
+            <h1 class="display-4 text-center">${publisher.name}</h1>
             <ul class="text-center list-inline py-3">
             <li class="list-inline-item">
               <button type="button" class="btn btn-secondary get-magazines" id="${publisher.id}">Magazines</button>

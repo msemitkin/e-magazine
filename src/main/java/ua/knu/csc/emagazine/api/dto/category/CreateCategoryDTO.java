@@ -1,5 +1,7 @@
 package ua.knu.csc.emagazine.api.dto.category;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,7 +14,7 @@ public class CreateCategoryDTO {
         message = "Category name must have length between {min} and {max}")
     private String value;
 
-    public CreateCategoryDTO(String value) {
+    public CreateCategoryDTO(@JsonProperty("value") String value) {
         this.value = value;
     }
 

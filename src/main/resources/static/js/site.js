@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     $(document).on("click", ".magazine", function () {
         let id = $(this).attr("id");
-        alert(`Here must be shown magazine info. Id: ${id}`);
+        renderMagazine(id, ".publisher-content")
     });
 
     $(document).on("click", ".add-magazine", function () {
@@ -57,4 +57,31 @@ $(document).ready(function () {
         renderAddMagazineForm(publisherId, ".publisher-content");
     });
 
+    $(document).on("click", ".get-edit-magazine-form", function () {
+        let id = $(this).attr("id");
+        renderEditMagazineForm(id, ".publisher-content");
+        // alert(`Here must be shown a form to edit magazine with id ${id}`);
+    });
+
+    $(document).on("submit", "#edit-magazine-form", function () {
+        let id = $("#magazineId").val();
+        let name = $("#magazine-name").val().trim();
+        let categoryId = $(".category-select").val();
+        editMagazine(id, name, categoryId);
+    })
+
+    $(document).on("click", ".delete-magazine", function () {
+        let id = $(this).attr("id");
+        deleteMagazine(id);
+    });
+
+    $(document).on("click", ".get-publications", function () {
+        let magazineId = $(this).attr("id");
+        renderPublications(magazineId, ".magazine-content");
+    });
+
+    $(document).on("click", ".get-add-publication-form", function () {
+        let magazineId = $(this).attr("id");
+        alert(`there must be shows a form to add a new publication for magazine ${magazineId}`);
+    });
 });
