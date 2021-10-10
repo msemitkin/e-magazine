@@ -1,0 +1,18 @@
+version: "1"
+services:
+  e-magazine-db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=emagazine
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+  e-magazine-application:
+    image: emagazine:5.0
+    ports:
+      - "8080:8080"
+    depends_on:
+      - e-magazine-db
+    environment:
+      - POSTGRES_DATABASE=emagazine
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
